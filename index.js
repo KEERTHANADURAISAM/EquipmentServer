@@ -42,7 +42,7 @@ app.get("/user/:id", async function (req, res) {
     const connection = await mongoClient.connect(URL);
     const db = connection.db(DB);
     const resUser = await db
-      .collection("EquipmentImages")
+      .collection("TreadmillImages")
       .findOne({ _id: new mongodb.ObjectId(req.params.id) });
     connection.close();
     res.json(resUser);
