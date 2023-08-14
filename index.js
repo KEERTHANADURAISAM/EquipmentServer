@@ -7,8 +7,6 @@ const cors = require("cors")
 const URL =process.env.DB
   
 const DB = "EquipmentRentalPortal";
-
-const user = [];
 app.use(express.json());
 app.use(cors({
 origin:"http://localhost:3000"
