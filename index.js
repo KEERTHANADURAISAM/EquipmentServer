@@ -5,7 +5,6 @@ const dotenv = require("dotenv").config();
 const mongoClient = mongodb.MongoClient;
 const cors = require("cors")
 const URL =process.env.DB
-  
 const DB = "EquipmentRentalPortal";
 app.use(express.json());
 app.use(cors({
