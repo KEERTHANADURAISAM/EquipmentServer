@@ -3,16 +3,16 @@ const app = express();
 const mongodb = require("mongodb");
 const dotenv = require("dotenv").config();
 const mongoClient = mongodb.MongoClient;
-const cors = require("cors")
-const URL =process.env.DB
+const cors = require("cors");
+const URL = process.env.DB;
 const DB = "EquipmentRentalPortal";
 
-
-
 app.use(express.json());
-app.use(cors({
-origin:"http://localhost:3000"
-}))
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.post("/user", async function (req, res) {
   try {
@@ -57,8 +57,6 @@ app.get("/treadmillimgs/:id", async function (req, res) {
   }
 });
 
-
-
 // cross trainers
 app.get("/crosstrainersimgs", async function (req, res) {
   try {
@@ -88,7 +86,6 @@ app.get("/crosstrainersimgs/:id", async function (req, res) {
   }
 });
 
-
 // massagers
 
 app.get("/massagersimgs", async function (req, res) {
@@ -104,8 +101,6 @@ app.get("/massagersimgs", async function (req, res) {
   }
 });
 
-
-
 app.get("/massagersimgs/:id", async function (req, res) {
   try {
     const connection = await mongoClient.connect(URL);
@@ -120,7 +115,6 @@ app.get("/massagersimgs/:id", async function (req, res) {
     res.json("somethong went wrong");
   }
 });
-
 
 // exercise bikes
 
@@ -151,7 +145,6 @@ app.get("/exercisebikesimgs/:id", async function (req, res) {
     res.json("somethong went wrong");
   }
 });
-
 
 app.put("/user/:id", async function (req, res) {
   try {
@@ -186,10 +179,6 @@ app.delete("/user/:id", async function (req, res) {
   }
 });
 
-
-
-
 // app listening
-
 
 app.listen(process.env.PORT || 3001);
