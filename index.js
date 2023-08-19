@@ -29,123 +29,6 @@ app.post("/user", async function (req, res) {
 
 // all get requests in Rental items
 
-app.get("/treadmillimgs", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db.collection("TreadmillImages").find().toArray();
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-app.get("/treadmillimgs/:id", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db
-      .collection("TreadmillImages")
-      .findOne({ _id: new mongodb.ObjectId(req.params.id) });
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-// cross trainers
-app.get("/crosstrainersimgs", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db.collection("CrossTrainers").find().toArray();
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-app.get("/crosstrainersimgs/:id", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db
-      .collection("CrossTrainers")
-      .findOne({ _id: new mongodb.ObjectId(req.params.id) });
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-// massagers
-
-app.get("/massagersimgs", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db.collection("Massager").find().toArray();
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-app.get("/massagersimgs/:id", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db
-      .collection("Massager")
-      .findOne({ _id: new mongodb.ObjectId(req.params.id) });
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-// exercise bikes
-
-app.get("/exercisebikesimgs", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db.collection("Exercise Bikes").find().toArray();
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
-app.get("/exercisebikesimgs/:id", async function (req, res) {
-  try {
-    const connection = await mongoClient.connect(URL);
-    const db = connection.db(DB);
-    const resUser = await db
-      .collection("Exercise Bikes")
-      .findOne({ _id: new mongodb.ObjectId(req.params.id) });
-    connection.close();
-    res.json(resUser);
-  } catch (error) {
-    console.log(error);
-    res.json("somethong went wrong");
-  }
-});
-
 app.put("/user/:id", async function (req, res) {
   try {
     const connection = await mongoClient.connect(URL);
@@ -178,6 +61,22 @@ app.delete("/user/:id", async function (req, res) {
     res.json("somethong went wrong");
   }
 });
+
+// register password
+app.post("/register", async function (req, res) {
+  try{
+  const connection = await mongoClient.connect(URL);
+  const db = connection.db(DB);
+  const resUser = await db.collection("users").insertOne(req.body);
+  db.connection.close();
+  res.status(200).json("successfully registered");
+  }
+  catch(error){
+    res.status(500).json("can't register");
+  }
+})
+
+
 
 // app listening
 

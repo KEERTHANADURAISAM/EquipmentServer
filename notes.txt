@@ -1,0 +1,6 @@
+usage of build
+
+encrypt the code,minimize the file size
+
+
+vulnerability  - easy to attck its not strong
